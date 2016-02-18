@@ -17,9 +17,8 @@ window.onload = function() {
     
     function preload() {
     // Load an image and sprites
-    //game.load.image( 'skyLayer', 'assets/background.png' );
     game.load.image('skyLayer','assets/africa.png')
-        game.load.image('ball','assets/cutmypic.png');
+    game.load.image('ball','assets/cutmypic.png');
     game.load.spritesheet('lion','assets/LionSprite3.png',43,83,5);
     game.load.spritesheet('giraffe','assets/giraffeSprite.png',43,83,5);
     game.load.spritesheet('elephant','assets/elephantSprite.png',43,83,5);
@@ -27,8 +26,8 @@ window.onload = function() {
     game.load.spritesheet('rain', 'assets/rain.png', 17, 17);
     game.load.spritesheet('dude', 'assets/dude.png', 50, 48);
     game.load.image('water', 'assets/water.png');
-    game.load.audio('music','assets/audio/lionKing.mp3')
-    }
+        game.load.audio('music','assets/audio/lionKing.mp3')
+       }
     
     var sprite;
     var orb;
@@ -95,13 +94,9 @@ window.onload = function() {
             
         //  We need to enable physics on the player
         game.physics.arcade.enable(player);
-        player.body.bounce.y = 0.4;
-        player.body.gravity.y = 250;
-        //player.body.allowGravity = false;
-        // Set an initial motion
-        //player.body.velocity.x = 400;
-        
-        
+        player.body.bounce.y = 0.5;
+        player.body.gravity.y = 300;
+                
         player.body.collideWorldBounds = true;
 
                       
@@ -122,7 +117,7 @@ window.onload = function() {
     scoreText = game.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
     //  Text game over example phaser
-    stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '84px Arial', fill: '#fff' });
+    stateText = game.add.text(game.world.centerX,game.world.centerY,' ', { font: '50px Arial', fill: '#fff' });
     stateText.anchor.setTo(0.5, 0.5);
     stateText.visible = false;
            
@@ -136,12 +131,7 @@ window.onload = function() {
         orb3.rotation += 0.01;
         
         sprite.angle += 1;
-       
-//    player.body.gravity = new Phaser.Point(sprite.body.x - player.body.x, sprite.body.y - player.body.y);
-//    // Normalize and multiply by actual strength of gravity desired
-//    player.body.gravity = player.body.gravity.normalize().multiply(300, 300);
-        
-        
+           
        // score += 1;
         scoreText.text = score + ' ounces of water';
         
