@@ -26,14 +26,18 @@ window.onload = function() {
     game.load.spritesheet('rain', 'assets/rain.png', 17, 17);
     game.load.spritesheet('dude', 'assets/dude.png', 50, 48);
     game.load.image('water', 'assets/water.png');
-        game.load.audio('music','assets/audio/lionKing.mp3')
+    game.load.audio('music','assets/audio/lionKing.mp3')
+    game.load.spritesheet('cheetah','assets/cheetahSprite.png');
+    game.load.spritesheet('bird','assets/bird.png');
        }
     
     var sprite;
     var orb;
     var orb1;
     var orb2;
-    var orb3;    
+    var orb3; 
+    var orb4;
+    var orb5;
     var player;
     var score = 0;
     var scoreText;
@@ -43,16 +47,14 @@ window.onload = function() {
     var music;
         
     function create() {
-        // Create a sprite at the center of the screen using the 'logo' image.
-
-        //ball image
-         game.add.sprite(0, 0, 'skyLayer');      
-         sprite = game.add.sprite(400, 300, 'ball');
-         sprite.anchor.setTo(0.5, 0.5);
-        
-        //music
+         //music
         music = game.add.audio('music');
         music.play();
+        
+        //ball image
+         game.add.sprite(0, 0, 'skyLayer');  
+         sprite = game.add.sprite(400, 300, 'ball');
+         sprite.anchor.setTo(0.5, 0.5);
         
         water = game.add.sprite(400,300,'water');
         water.anchor.setTo(0.5,0.5);
@@ -65,8 +67,7 @@ window.onload = function() {
         orb = game.add.sprite(400,300,'lion');
         orb.anchor.setTo(0.5);
         orb.pivot.x = 140;
-        //orb.body.collideWorldBounds = true;
-        
+                
         orb1 = game.add.sprite(400,300,'monkey');
         orb1.anchor.setTo(0.5);
         orb1.pivot.x = 152;
@@ -79,12 +80,19 @@ window.onload = function() {
         orb3.anchor.setTo(0.5);
         orb3.pivot.x = 150;
         
+       // orb4 = game.add.sprite(600,300,'cheetah');
+        orb4 = game.add.sprite(600,530,'cheetah');       
+        orb5 = game.add.sprite(60,255,'bird');
+        
+        //if the player collides with animals in this group, he dies
         animals = game.add.group();
         animals.enableBody = true;
         animals.add(orb);
         animals.add(orb1);
         animals.add(orb2);
         animals.add(orb3);
+        animals.add(orb4);
+        animals.add(orb5);
         
          //  Our controls.
         cursors = game.input.keyboard.createCursorKeys();
@@ -125,9 +133,10 @@ window.onload = function() {
     
     function update() {
          
+        //how fast the animals orbit the watering hole
         orb.rotation += 0.08;
         orb1.rotation += 0.04;
-        orb2.rotation += 0.03;
+        orb2.rotation += 0.02;
         orb3.rotation += 0.01;
         
         sprite.angle += 1;
